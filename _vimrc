@@ -68,6 +68,22 @@ cnoremap %% <C-R>=expand('%:p:h').'/'<cr>
 " ノーマルモードへの遷移
 inoremap <C-f> <ESC>
 
+" ノーマルモードでスペースを入れる
+"nnoremap <Space> jzz
+nnoremap <Space> i<Space><ESC>
+
+" Ctrl+spaceで保存
+"nnoremap <Nul> :w<CR>
+" Ctrl+sで保存
+nnoremap <C-s> :w<CR>
+nnoremap <C-q> :q<CR>
+
+"検索後画面の中心に
+nmap n nzz
+nmap N Nzz
+
+" ノーマルモードで改行挿入
+nnoremap <CR> o<ESC>
 
 "----------------------------------------
 " システム設定
@@ -78,12 +94,12 @@ inoremap <C-f> <ESC>
 "ファイルの上書きの前にバックアップを作る/作らない
 "set writebackupを指定してもオプション 'backup' がオンでない限り、
 "バックアップは上書きに成功した後に削除される。
-set nowritebackup
+set writebackup
 "バックアップ/スワップファイルを作成する/しない
 set backup
-set backupdir = ~/vim/vim_backup
+set backupdir=~/vim/backup
 set swapfile
-set directory = ~/vim/vim_swap
+set directory=~/vim/swap
 "set noswapfile
 "再読込、vim終了後も継続するアンドゥ(7.3)
 if version >= 703
@@ -116,6 +132,8 @@ set backspace=indent,eol,start
 set ambiwidth=double
 "コマンドライン補完するときに強化されたものを使う
 set wildmenu
+"カーソル行の強調表示
+set cursorline
 "マウスを有効にする
 "if has('mouse')
 "  set mouse=a
