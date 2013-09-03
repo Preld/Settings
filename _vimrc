@@ -80,7 +80,10 @@ inoremap <C-f> <ESC>
 "バックアップは上書きに成功した後に削除される。
 set nowritebackup
 "バックアップ/スワップファイルを作成する/しない
-set nobackup
+set backup
+set backupdir = ~/vim/vim_backup
+set swapfile
+set directory = ~/vim/vim_swap
 "set noswapfile
 "再読込、vim終了後も継続するアンドゥ(7.3)
 if version >= 703
