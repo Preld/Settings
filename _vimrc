@@ -58,10 +58,10 @@ syntax on
 "キーバインド変更
 "----------------------------------------
 " 行が折り返されている時上下移動が論理行単位ではなく表示行単位で行われるようにする
-nnoremap j gj
-nnoremap k gk
-nnoremap gj j
-nnoremap gk k
+noremap j gj
+noremap k gk
+noremap gj j
+noremap gk k
 " コマンドラインモードで %% を入力すると現在編集中のファイルのフォルダのパスが展開されるようにする
 cnoremap %% <C-R>=expand('%:p:h').'/'<cr>
 
@@ -84,6 +84,14 @@ nmap N Nzz
 
 " ノーマルモードで改行挿入
 nnoremap <CR> o<ESC>
+
+" 引用符や括弧をセットで入力したときにLeftする
+inoremap {} {}<LEFT>
+inoremap [] []<LEFT>
+inoremap () ()<LEFT>
+inoremap "" ""<LEFT>
+inoremap '' ''<LEFT>
+inoremap <> <><LEFT>
 
 "----------------------------------------
 " システム設定
