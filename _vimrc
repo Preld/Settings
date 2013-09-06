@@ -394,3 +394,8 @@ function! s:my_gitv_settings()
   " ファイルの diff じゃなくて変更されたファイルの一覧が見たい
   nnoremap <silent><buffer> t :<C-u>windo call <SID>toggle_git_folding()<CR>1<C-w>w
 endfunction
+
+augroup Gitv
+    autocmd!
+    autocmd FileType gitv nnoremap <buffer> G :<C-u>Gbrowse <C-r>=<SID>gitv_get_current_hash()<CR><CR>
+augroup END
