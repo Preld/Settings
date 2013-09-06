@@ -52,6 +52,7 @@ NeoBundle 'tomtom/tcomment_vim'
 
 " Git用
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'gregsexton/gitv'
 
 filetype plugin indent on     " required!
 filetype indent on
@@ -364,3 +365,32 @@ if has('syntax')
   call ZenkakuSpace()
 endif
 
+"----------------------------------------
+"Gitvの設定
+"----------------------------------------
+" ハッシュ値を取得する
+function! s:gitv_get_current_hash()
+   return matchstr(getline('.'), '\[\zs.\{7\}\ze\]$')
+endfunction
+
+" 折りたたみを簡単に操作できるように
+autocmd FileType git setlocal nofoldenable foldlevel=0
+function! s:toggle_git_folding()
+  if &filetype ==# 'git'
+      setlocal foldenable!
+  endif
+endfunction
+
+autocmd FileType gitv call s:my_gitv_settings()
+function! s:my_gitv_settings()
+  " 現在のカーソル位置にあるブランチ名を取得してログ上でブランチに checkout する
+  setlocal iskeyword+=/,-,.
+  nnoremap <silent><buffer> C :<C-u>Git checkout <C-r><C-w><CR>
+  " 現在のカーソル行の SHA1 ハッシュを取得してログ上であらゆることを実行する
+  nnoremap <buffer> <Space>rb :<C-u>Git rebase <C-r>=GitvGetCurrentHash(<CR><Space>
+  nnoremap <buffer> <Space>R :<C-u>Git revert <C-r>=GitvGetCurrentHash(<CR><CR>
+  nnoremap <buffer> <Space>h :<C-u>Git cherry-pick <C-r>=GitvGetCurrentHash(<CR><CR>
+  nnoremap <buffer> <Space>rh :<C-u>Git reset --hard <C-r>=GitvGetCurrentHash(<CR>))))
+  " ファイルの diff じゃなくて変更されたファイルの一覧が見たい
+  nnoremap <silent><buffer> t :<C-u>windo call <SID>toggle_git_folding(<CR>1<C-w>w)
+endfunction
