@@ -48,7 +48,10 @@ NeoBundle 'kchmck/vim-coffee-script'
 
 " コメント関連
 NeoBundle 'tomtom/tcomment_vim'
-NeoBundle 'taichouchou2/surround.vim'
+"NeoBundle 'taichouchou2/surround.vim'
+
+" Git用
+NeoBundle 'tpope/vim-fugitive'
 
 filetype plugin indent on     " required!
 filetype indent on
