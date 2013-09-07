@@ -50,6 +50,9 @@ NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'tomtom/tcomment_vim'
 "NeoBundle 'taichouchou2/surround.vim'
 
+" ステータスライン改造
+NeoBundle 'bling/vim-airline'
+
 " Git用
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'gregsexton/gitv'
@@ -57,6 +60,37 @@ NeoBundle 'gregsexton/gitv'
 filetype plugin indent on     " required!
 filetype indent on
 syntax on
+
+
+"----------------------------------------
+" airlineの設定
+"----------------------------------------
+set t_Co=256 "カラーを256にしないと色が変わらない。
+
+"例えばuniteやvimfilerでairlineを優先するときは.vimrcに以下を追記します
+let g:unite_force_overwrite_statusline = 0
+let g:vimfiler_force_overwrite_statusline = 0
+
+" メインの設定
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '◀'
+let g:airline_detect_paste=1
+let g:airline_detect_iminsert=0
+let g:airline_inactive_collapse=1
+let g:airline_theme_patch_func = 'AirlineThemePatch'
+" let g:airline_theme='laederon'
+" let g:airline_theme='luna'
+" let g:airline_theme='ubaryd'
+let g:airline_theme='wombat'
+function! AirlineThemePatch(palette)
+    if g:airline_theme == 'badwolf'
+      for colors in values(a:palette.inactive)
+        let colors[3] = 245
+      endfor
+    endif
+  endfunction
+let g:airline_powerline_fontsa=0
+let g:airline_detect_whitespace=0
 
 "----------------------------------------
 "キーバインド変更
@@ -213,30 +247,6 @@ endif
 "色テーマ設定
 "gvimの色テーマは.gvimrcで指定する
 "colorscheme mycolor"
-
-"""""""""""""""""""""""""""""
-"ステータスラインに文字コードやBOM、16進表示等表示
-"iconvが使用可能の場合、カーソル上の文字コードをエンコードに応じた表示にするFencB()を使用
-""""""""""""""""""""""""""""""
-if has('iconv')
-  set statusline=%<%f\ %m\ %r%h%w%{'['.(&fenc!=''?&fenc:&enc).(&bomb?':BOM':'').']['.&ff.']'}%=[0x%{FencB()}]\ (%v,%l)/%L%8P\ 
-else
-  set statusline=%<%f\ %m\ %r%h%w%{'['.(&fenc!=''?&fenc:&enc).(&bomb?':BOM':'').']['.&ff.']'}%=\ (%v,%l)/%L%8P\ 
-endif
-
-function! FencB()
-  let c = matchstr(getline('.'), '.', col('.') - 1)
-  let c = iconv(c, &enc, &fenc)
-  return s:Byte2hex(s:Str2byte(c))
-endfunction
-
-function! s:Str2byte(str)
-  return map(range(len(a:str)), 'char2nr(a:str[v:val])')
-endfunction
-
-function! s:Byte2hex(bytes)
-  return join(map(copy(a:bytes), 'printf("%02X", v:val)'), '')
-endfunction
 
 "----------------------------------------
 " diff/patch
@@ -395,6 +405,7 @@ function! s:my_gitv_settings()
   nnoremap <silent><buffer> t :<C-u>windo call <SID>toggle_git_folding()<CR>1<C-w>w
 endfunction
 
+" 指定したCommitページのURLを作成する
 augroup Gitv
     autocmd!
     autocmd FileType gitv nnoremap <buffer> G :<C-u>Gbrowse <C-r>=<SID>gitv_get_current_hash()<CR><CR>
