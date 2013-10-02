@@ -61,6 +61,44 @@ filetype plugin indent on     " required!
 filetype indent on
 syntax on
 
+" カラースキーム
+" solarized カラースキーム
+NeoBundle 'altercation/vim-colors-solarized'
+" mustang カラースキーム
+NeoBundle 'croaker/mustang-vim'
+" wombat カラースキーム
+NeoBundle 'jeffreyiacono/vim-colors-wombat'
+" jellybeans カラースキーム
+NeoBundle 'nanotech/jellybeans.vim'
+" lucius カラースキーム
+NeoBundle 'vim-scripts/Lucius'
+" zenburn カラースキーム
+NeoBundle 'vim-scripts/Zenburn'
+" mrkn256 カラースキーム
+NeoBundle 'mrkn/mrkn256.vim'
+" railscasts カラースキーム
+NeoBundle 'jpo/vim-railscasts-theme'
+" pyte カラースキーム
+NeoBundle 'therubymug/vim-pyte'
+" molokai カラースキーム
+NeoBundle 'tomasr/molokai'
+" rdark カラースキーム
+NeoBundle 'vim-scripts/rdark'
+" hybird カラースキーム
+NeoBundle 'w0ng/vim-hybrid'
+
+autocmd ColorScheme * highlight Comment ctermfg=230
+autocmd ColorScheme * highlight Number ctermfg=51
+autocmd ColorScheme * highlight constant ctermfg=51
+autocmd ColorScheme * highlight Character ctermfg=51
+autocmd ColorScheme * highlight Boolean ctermfg=51
+autocmd ColorScheme * highlight LineNr ctermfg=241
+
+"colorscheme mrkn256
+colorscheme jellybeans
+"colorscheme wombat
+"colorscheme mustang
+"colorscheme railscasts
 
 "----------------------------------------
 " airlineの設定
@@ -103,9 +141,6 @@ noremap gk k
 " コマンドラインモードで %% を入力すると現在編集中のファイルのフォルダのパスが展開されるようにする
 cnoremap %% <C-R>=expand('%:p:h').'/'<cr>
 
-" ノーマルモードへの遷移
-inoremap <C-f> <ESC>
-
 " ノーマルモードでスペースを入れる
 "nnoremap <Space> jzz
 nnoremap <Space> i<Space><ESC>
@@ -120,23 +155,29 @@ nnoremap <C-q> :q<CR>
 nmap n nzz
 nmap N Nzz
 
+" ESCを簡単にする
+imap <C-k> <ESC>
+
+"" Esc連打でハイライトを消す
+nmap <silent> <C-k><C-k> :nohlsearch<CR><ESC>
+
 " ノーマルモードで改行挿入
-nnoremap <CR> o<ESC>
+nmap <CR> o<ESC>
 
 " 引用符や括弧をセットで入力したときにLeftする
-inoremap {} {}<LEFT>
-inoremap [] []<LEFT>
-inoremap () ()<LEFT>
-inoremap "" ""<LEFT>
-inoremap '' ''<LEFT>
-inoremap <> <><LEFT>
+" inoremap {} {}<LEFT>
+" inoremap [] []<LEFT>
+" inoremap () ()<LEFT>
+" inoremap "" ""<LEFT>
+" inoremap '' ''<LEFT>
+" inoremap <> <><LEFT>
 
 "----------------------------------------
-" システム設定
+ " システム設定
 "----------------------------------------
-"mswin.vimを読み込む
+ "mswin.vimを読み込む
 "source $VIMRUN
-
+ 
 "ファイルの上書きの前にバックアップを作る/作らない
 "set writebackupを指定してもオプション 'backup' がオンでない限り、
 "バックアップは上書きに成功した後に削除される。
@@ -199,9 +240,18 @@ set incsearch
 "検索文字の強調表示
 set hlsearch
 "w,bの移動で認識する文字
+"
 "set iskeyword=a-z,A-Z,48-57,_,.,-,>
 "vimgrep をデフォルトのgrepとする場合internal
 "set grepprg=internal
+
+"----------------------------------------
+" インデント設定
+"----------------------------------------
+set tabstop=2
+set shiftwidth=2
+set expandtab
+
 
 "----------------------------------------
 " 表示設定
