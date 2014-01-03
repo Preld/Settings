@@ -184,9 +184,9 @@ nmap <CR> o<ESC>
 set writebackup
 "バックアップ/スワップファイルを作成する/しない
 set backup
-set backupdir=~/vim/backup
+set backupdir=~/.vim/backup
 set swapfile
-set directory=~/vim/swap
+set directory=~/.vim/swap
 "set noswapfile
 "再読込、vim終了後も継続するアンドゥ(7.3)
 if version >= 703

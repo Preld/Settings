@@ -1,12 +1,6 @@
 "----------------------------------------
 "キーバインド変更
 "----------------------------------------
-" 行が折り返されている時上下移動が論理行単位ではなく表示行単位で行われるようにする
-noremap j gj
-noremap k gk
-noremap gj j
-noremap gk k
-
 " ノーマルモードでスペースを入れる
 "nnoremap <Space> jzz
 nnoremap <Space> i<Space><ESC>
@@ -45,5 +39,3 @@ set hlsearch
 set tabstop=2
 set shiftwidth=2
 set expandtab
-
-
