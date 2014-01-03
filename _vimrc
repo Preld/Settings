@@ -88,11 +88,11 @@ NeoBundle 'vim-scripts/rdark'
 NeoBundle 'w0ng/vim-hybrid'
 
 autocmd ColorScheme * highlight Comment ctermfg=230
+autocmd ColorScheme * highlight LineNr ctermfg=241
 autocmd ColorScheme * highlight Number ctermfg=51
 autocmd ColorScheme * highlight constant ctermfg=51
 autocmd ColorScheme * highlight Character ctermfg=51
 autocmd ColorScheme * highlight Boolean ctermfg=51
-autocmd ColorScheme * highlight LineNr ctermfg=241
 
 "colorscheme mrkn256
 colorscheme jellybeans
