@@ -1,0 +1,49 @@
+"----------------------------------------
+"キーバインド変更
+"----------------------------------------
+" 行が折り返されている時上下移動が論理行単位ではなく表示行単位で行われるようにする
+noremap j gj
+noremap k gk
+noremap gj j
+noremap gk k
+
+" ノーマルモードでスペースを入れる
+"nnoremap <Space> jzz
+nnoremap <Space> i<Space><ESC>
+
+"検索後画面の中心に
+nmap n nzz
+nmap N Nzz
+
+"" Esc連打でハイライトを消す
+nmap <silent> <ESC><ESC> :nohlsearch<CR><ESC>
+
+" ノーマルモードで改行挿入
+nmap <CR> o<ESC>
+
+" スクロール
+noremap <Space>j <C-f>
+noremap <Space>k <C-b>
+
+"----------------------------------------
+" 検索
+"----------------------------------------
+"検索の時に大文字小文字を区別しない
+"ただし大文字小文字の両方が含まれている場合は大文字小文字を区別する
+set ignorecase
+set smartcase
+"検索時にファイルの最後まで行ったら最初に戻る
+set wrapscan
+"インクリメンタルサーチ
+set incsearch
+"検索文字の強調表示
+set hlsearch
+
+"----------------------------------------
+" インデント設定
+"----------------------------------------
+set tabstop=2
+set shiftwidth=2
+set expandtab
+
+
