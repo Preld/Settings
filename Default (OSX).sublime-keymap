@@ -1,0 +1,132 @@
+[
+    // RecentActiveFiles
+    { "keys": ["ctrl+r"], "command": "recent_active_files" },
+
+//　vim用のキーマップ
+    //　コマンドパレット呼び出し
+    {
+        "keys": [";"],
+        "command": "show_overlay",
+        "args": {"overlay": "command_palette"},
+        "context":[
+            { "key": "setting.command_mode"}
+        ]
+    },
+
+    //　行末
+    { "keys":
+        ["ctrl+l"],
+        "command": "move_to",
+        "args": {"to": "eol", "extend": false},
+        "context":[
+            { "key": "setting.command_mode"}
+        ]
+    },
+
+    //　行頭
+    { "keys":
+        ["ctrl+h"],
+        "command": "move_to",
+        "args": {"to": "bol", "extend": false},
+        "context":[
+            { "key": "setting.command_mode"}
+        ]
+    },
+
+    // move tabs
+    { "keys":
+        ["super+ctrl+h"],
+        "command": "prev_view" ,
+        "context":[
+            { "key": "setting.command_mode"}
+        ]
+    },
+
+    {
+        "keys": ["super+ctrl+l"],
+        "command": "next_view" ,
+        "context":[
+            { "key": "setting.command_mode"}
+        ]
+    },
+
+    // ファイルスイッチ
+    {
+        "keys": ["t"],
+        "command": "show_overlay",
+        "args": {"overlay": "goto", "show_files": true} ,
+        "context":[
+            { "key": "setting.command_mode"}
+        ]
+    },
+
+    //　サイドバーを表示・非表示
+    { "keys": ["-"],
+        "command": "toggle_side_bar",
+        "context":[
+            { "key": "setting.command_mode"}
+        ]
+    },
+
+    { "keys": ["_"],
+        "command": ["toggle_side_bar"],
+        "context":[
+            { "key": "setting.command_mode"}
+        ]
+    },
+
+    //　サイドバーにフォーカスする
+    {
+        "keys": ["`"],
+        "command":"focus_side_bar" ,
+        "context":[ { "key": "setting.command_mode"}]
+    },
+
+    //　Git関連のコマンド
+    { "keys": ["g","c"],
+        "command": "git_quick_commit",
+        "context":[
+            { "key": "setting.command_mode"}
+        ]
+    },
+
+    { "keys": ["g","s"],
+        "command": "git_status",
+        "context":[
+            { "key": "setting.command_mode"}
+        ]
+    },
+
+    { "keys": ["g","l"],
+        "command": "git_log",
+        "context":[
+            { "key": "setting.command_mode"}
+        ]
+    },
+
+    //　コメントを入り切り
+    {
+        "keys": ["c"],
+        "command": "toggle_comment",
+        "args": { "block": false } ,
+        "context":[
+            { "key": "setting.command_mode"}
+        ]
+    },
+
+    //　bookmark関連
+    {
+        "keys": ["super+h"], "command": "next_bookmark" ,
+        "context":[
+            { "key": "setting.command_mode"}
+        ]
+    },
+
+    {
+         "keys": ["m"], "command": "toggle_bookmark",
+         "context":[
+             { "key": "setting.command_mode"}
+         ]
+    }
+
+]
