@@ -5,6 +5,11 @@
 "nnoremap <Space> jzz
 nnoremap <Space> i<Space><ESC>
 
+" ノーマルモードでインデントを入れる
+nnoremap <C-t> i<C-t><ESC>
+nnoremap <C-d> i<C-d><ESC>
+nnoremap <Tab> <C-t>
+
 "検索後画面の中心に
 nmap n nzz
 nmap N Nzz
@@ -19,7 +24,7 @@ nmap <CR> o<ESC>
 noremap <Space>j <C-f>
 noremap <Space>k <C-b>
 
-" 行頭,行末
+" ノーマルモードで行頭行末へ移動
 nmap <C-h> 0
 nmap <C-l> $
 

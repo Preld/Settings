@@ -14,12 +14,62 @@ NeoBundle 'Shougo/vimproc'
 NeoBundle 'VimClojure'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'jpalardy/vim-slime'
 NeoBundle 'scrooloose/syntastic'
 
+"----------------------------------------
+" 入力補完機能の設定
+"----------------------------------------
+NeoBundle 'Shougo/neocomplcache'
+"Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" 起動時に有効化
+let g:neocomplcache_enable_at_startup = 1
+" 大文字が入力されるまで大文字小文字の区別を無視する
+let g:neocomplcache_enable_smart_case = 1
+" _(アンダースコア)区切りの補完を有効化
+let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplcache_enable_camel_case_completion  =  1
+" ポップアップメニューで表示される候補の数
+let g:neocomplcache_max_list = 20
+" シンタックスをキャッシュするときの最小文字長
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+" カーソル移動中に自動補完しない
+let g:neocomplcache_enable_insert_char_pre = 1
+
+" Define dictionary
+let g:neocomplcache_dictionary_filetype_lists = {
+    \ 'default' : ''
+    \ }
+
+" Plugin key-mappings.
+" 前回行われた補完をキャンセルします
+inoremap <expr><C-g> neocomplcache#undo_completion()
+" 補完候補のなかから、共通する部分を補完します
+inoremap <expr><C-l> neocomplcache#complete_common_string()
+" tabで補完候補の選択を行う
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+" 現在選択している候補を確定します
+inoremap <expr><C-y> neocomplcache#close_popup()
+
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplcache#smart_close_popup() . "\<CR>"
+endfunction
+
+" Avoid crash by editing python source
+if !exists('g:neocomplcache_omni_patterns')
+  let g:neocomplcache_omni_patterns = {}
+endif
+let g:neocomplcache_omni_patterns.python = ''
+let g:neocomplcache_omni_patterns.ruby = ''
+
+"----------------------------------------
 " NerdTreeの設定
+"----------------------------------------
 " http://blog.livedoor.jp/kumonopanya/archives/51048805.html
 NeoBundle 'scrooloose/nerdtree' "ディレクトリツリー表示
 	nmap <silent> <C-e>      :NERDTreeToggle<CR>
@@ -35,7 +85,9 @@ NeoBundle 'scrooloose/nerdtree' "ディレクトリツリー表示
 	let g:NERDTreeDirArrows=0 "NERDTreeを+|`などを使ってツリー表示をする設定
 	"let g:NERDTreeMouseMode=2 "マウス操作方法の設定
 
+"----------------------------------------
 " Web Coding 用 plugin
+"----------------------------------------
 " http://qiita.com/alpaca_taichou/items/056a4c42fe7a928973e6
 NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'open-browser.vim'
@@ -46,14 +98,15 @@ NeoBundle 'taichouchou2/html5.vim'
 NeoBundle 'taichouchou2/vim-javascript' " jQuery syntax追加
 NeoBundle 'kchmck/vim-coffee-script'
 
+"----------------------------------------
 " コメント関連
+"----------------------------------------
 NeoBundle 'tomtom/tcomment_vim'
 "NeoBundle 'taichouchou2/surround.vim'
 
-" ステータスライン改造
-NeoBundle 'bling/vim-airline'
-
+"----------------------------------------
 " Git用
+"----------------------------------------
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'gregsexton/gitv'
 
@@ -61,7 +114,9 @@ filetype plugin indent on     " required!
 filetype indent on
 syntax on
 
+"----------------------------------------
 " カラースキーム
+"----------------------------------------
 " solarized カラースキーム
 NeoBundle 'altercation/vim-colors-solarized'
 " mustang カラースキーム
@@ -103,6 +158,8 @@ colorscheme jellybeans
 "----------------------------------------
 " airlineの設定
 "----------------------------------------
+NeoBundle 'bling/vim-airline'
+
 set t_Co=256 "カラーを256にしないと色が変わらない。
 
 "例えばuniteやvimfilerでairlineを優先するときは.vimrcに以下を追記します
@@ -138,6 +195,16 @@ noremap j gj
 noremap k gk
 noremap gj j
 noremap gk k
+
+" インサートモードでカーソルキーを使用する
+function! s:goback_insert(key)
+  return "gi" . a:key . neocomplcache#cancel_popup()
+endfunction
+nnoremap <expr> OA <SID>goback_insert("\<Up>")
+nnoremap <expr> OB <SID>goback_insert("\<Down>")
+nnoremap <expr> OC <SID>goback_insert("\<Right>")
+nnoremap <expr> OD <SID>goback_insert("\<Left>")
+
 " コマンドラインモードで %% を入力すると現在編集中のファイルのフォルダのパスが展開されるようにする
 cnoremap %% <C-R>=expand('%:p:h').'/'<cr>
 
@@ -164,6 +231,15 @@ nmap <silent> <C-k><C-k> :nohlsearch<CR><ESC>
 " ノーマルモードで改行挿入
 nmap <CR> o<ESC>
 
+" ノーマルモードで行頭行末
+nmap <C-h> 0
+nmap <C-l> $
+
+" ノーマルモードでインデントを入れる
+nnoremap <C-t> i<C-t><ESC>
+nnoremap <C-d> i<C-d><ESC>
+"nnoremap <Tab> <C-t>
+ 
 " 引用符や括弧をセットで入力したときにLeftする
 " inoremap {} {}<LEFT>
 " inoremap [] []<LEFT>
@@ -264,7 +340,7 @@ set novisualbell
 set visualbell t_vb=
 "マクロ実行中などの画面再描画を行わない
 "set lazyredraw
-"Windowsでディレクトリパスの区切り文字表示に / を使えるようにする
+ "Windowsでディレクトリパスの区切り文字表示に / を使えるようにする
 set shellslash
 "行番号表示
 set number
