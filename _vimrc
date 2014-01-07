@@ -239,7 +239,20 @@ nmap <C-l> $
 nnoremap <C-t> i<C-t><ESC>
 nnoremap <C-d> i<C-d><ESC>
 "nnoremap <Tab> <C-t>
- 
+
+"カーソルキーで行末／行頭の移動可能に設定。
+set whichwrap=b,s,[,],<,>
+nnoremap h <Left>
+nnoremap l <Right>
+"l を <Right>に置き換えて、折りたたみを l で開くことができるようにする。
+if has('folding')
+    nnoremap <expr> l foldlevel(line('.')) ? "\<Right>zo" : "\<Right>"
+endif
+
+" カーソル位置の単語をヤンクした単語に置換
+nnoremap <silent> cp ciw<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
+nnoremap <silent> cip ce<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
+
 " 引用符や括弧をセットで入力したときにLeftする
 " inoremap {} {}<LEFT>
 " inoremap [] []<LEFT>
@@ -251,6 +264,7 @@ nnoremap <C-d> i<C-d><ESC>
 "----------------------------------------
  " システム設定
 "----------------------------------------
+"
  "mswin.vimを読み込む
 "source $VIMRUN
  
@@ -287,8 +301,6 @@ set history=50
 set formatoptions+=mM
 "Visual blockモードでフリーカーソルを有効にする
 set virtualedit=block
-"カーソルキーで行末／行頭の移動可能に設定
-set whichwrap=b,s,[,],<,>
 "バックスペースでインデントや改行を削除できるようにする
 set backspace=indent,eol,start
 "□や○の文字があってもカーソル位置がずれないようにする
