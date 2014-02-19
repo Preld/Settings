@@ -5,7 +5,7 @@
 "nnoremap <Space> jzz
 nnoremap <Space> i<Space><ESC>
 
-" ノーマルモードでインデントを入れる
+" ノーマルモードできるインデントを入れる
 nnoremap <C-t> i<C-t><ESC>
 nnoremap <C-d> i<C-d><ESC>
 nnoremap <Tab> <C-t>

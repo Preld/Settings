@@ -1,14 +1,13 @@
 {
-//themeに関する設定
 	"color_scheme": "Packages/Theme - Flatland/Flatland Monokai.tmTheme",
 	"flatland_square_tabs": true,
+	"font_size": 13.0,
 	"highlight_line": true,
+	"ignored_packages":
+	[
+	],
 	"theme": "Flatland Dark.sublime-theme",
 	"translate_tabs_to_spaces": true,
-//vimライクにする設定
-    "ignored_packages": [],
-    //起動時にコマンドモードにする
-    "vintage_start_in_command_mode": true,
-    //vintageキーバインドの有効化
-    "vintage_ctrl_keys": true
+	"vintage_ctrl_keys": true,
+	"vintage_start_in_command_mode": true
 }
