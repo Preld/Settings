@@ -1,1 +1,31 @@
-/Users/takakishoichiro/Library/Application Support/Karabiner/private.xml
+<?xml version="1.0"?>
+<root>
+    <appdef>
+        <appname>ECLIPSE</appname>
+        <equal>org.eclipse.eclipse</equal>
+    </appdef>
+    <appdef>
+        <appname>SUBLIMETEXT2</appname>
+        <equal>com.sublimetext.2</equal>
+    </appdef>
+    <appdef>
+        <appname>ANDROIDSTUDIO</appname>
+        <equal>com.google.android.studio</equal>
+    </appdef>
+<item>
+        <name>Escape to EISUU+Escape only some apps</name>
+        <identifier>remap.jis_escape2eisuuAndEscape_Vim</identifier>
+        <only>TERMINAL,SUBLIMETEXT2,ECLIPSE,ANDROIDSTUDIO</only>
+        <autogen>--KeyOverlaidModifier-- KeyCode::ESCAPE, KeyCode::JIS_EISUU, KeyCode::ESCAPE</autogen>
+     </item>
+
+   #Vim Emulation
+   <replacementdef>
+       <replacementname>VIM_EMU_ONLY_APPS</replacementname>
+       <replacementvalue>WORD</replacementvalue>
+   </replacementdef>
+   <replacementdef>
+       <replacementname>VIM_EMU_IGNORE_APPS</replacementname>
+       <replacementvalue></replacementvalue>
+   </replacementdef>
+</root>
