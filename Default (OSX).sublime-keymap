@@ -1,7 +1,4 @@
 [
-    // RecentActiveFiles
-    { "keys": ["ctrl+r"], "command": "recent_active_files" },
-
 //　vim用のキーマップ
     //　コマンドパレット呼び出し
     {
@@ -127,6 +124,54 @@
          "context":[
              { "key": "setting.command_mode"}
          ]
+    },
+
+//AdvancedNewFile
+
+    {
+        "keys": ["super+ctrl+n"],
+        "command": "advanced_new_file_new"
+    },
+
+//SideBarEnhancements
+
+    //　ファイルのRename
+    {
+        "keys": ["super+ctrl+r"],
+        "command": "side_bar_move"
+    },
+
+    //  ファイルの削除
+    {
+        "keys": ["super+shift+ctrl+d"],
+        "command": "side_bar_delete"
+    },
+
+    //  ファイルのコピー
+    {
+        "keys": ["super+ctrl+c"],
+        "command": "side_bar_duplicate"
+    },
+
+    //  ファイルが存在するフォルダを開く
+    {
+        "keys": ["super+ctrl+o"],
+        "command": "side_bar_reveal"
+    },
+
+//BrowserRefresh
+    {
+        "keys": ["ctrl+r"],
+        "command": "brower_refresh",
+        "args": {
+            "auto_save": false,
+            "delay": 0.5,
+            "activate_browser": true,
+            "browser_name" : "Google Chrome"
+        },
+        "context":[
+            { "key": "setting.command_mode"}
+        ]
     }
 
 ]

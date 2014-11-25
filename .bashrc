@@ -1,18 +1,17 @@
-# 初期設定
+# Ã¥ÂÂÃ¦ÂÂÃ¨Â¨Â­Ã¥Â®Â
 export LESSCHARSET=utf-8
 export TERM=xterm-color
 alias ls='ls -G'
 alias la='ls -aF'
 alias ll='ls -alF'
 
-#自作エイリアス
+#Ã¨ÂÂªÃ¤Â½ÂÃ£ÂÂ¨Ã£ÂÂ¤Ã£ÂÂªÃ£ÂÂ¢Ã£ÂÂ¹
 alias be='bundle exec'
 
-# 色付け設定
+# Ã¨ÂÂ²Ã¤Â»ÂÃ£ÂÂÃ¨Â¨Â­Ã¥Â®Â
 #export CLICOLOR=1
 #export LSCOLORS=CxGxcxdxCxegedabagacad
 
-#ctrl+s,ctrl+qを使用可能にする。
+#ctrl+s,ctrl+qÃ£ÂÂÃ¤Â½Â¿Ã§ÂÂ¨Ã¥ÂÂ¯Ã¨ÂÂ½Ã£ÂÂ«Ã£ÂÂÃ£ÂÂÃ£ÂÂ
 stty stop undef
 stty start undef
-
