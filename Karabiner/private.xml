@@ -9,13 +9,17 @@
         <equal>com.sublimetext.2</equal>
     </appdef>
     <appdef>
+        <appname>SUBLIMETEXT3</appname>
+        <equal>com.sublimetext.3</equal>
+    </appdef>
+    <appdef>
         <appname>ANDROIDSTUDIO</appname>
         <equal>com.google.android.studio</equal>
     </appdef>
 <item>
         <name>Escape to EISUU+Escape only some apps</name>
         <identifier>remap.jis_escape2eisuuAndEscape_Vim</identifier>
-        <only>TERMINAL,SUBLIMETEXT2,ECLIPSE,ANDROIDSTUDIO</only>
+        <only>TERMINAL,SUBLIMETEXT2,ECLIPSE,ANDROIDSTUDIO,SUBLIMETEXT3</only>
         <autogen>--KeyOverlaidModifier-- KeyCode::ESCAPE, KeyCode::JIS_EISUU, KeyCode::ESCAPE</autogen>
      </item>
 
